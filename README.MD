@@ -15,12 +15,57 @@ A full-stack fleet and transport management system designed to manage vehicles, 
 
 ---
 
-## Features (Current)
+## Architecture Overview
 
-- User Registration
-- User Login (JWT Authentication)
-- Password Hashing (bcrypt)
-- API Documentation via Swagger
+This project follows a modular backend architecture:
+
+- API Layer (FastAPI routes)
+- Service Layer (business logic)
+- Data Layer (SQLAlchemy ORM models)
+- Dependency Injection (FastAPI Depends system)
+- JWT-based authentication for security
+
+---
+
+## Features (Completed)
+
+### Authentication & Security
+- User registration with validation
+- Secure login system using JWT
+- Password hashing using bcrypt
+- Protected API routes using dependency injection
+- Token-based authentication flow
+
+---
+
+## Planned Features (In Progress)
+
+### Core System Modules
+- Role-based access control (Admin / Manager / Driver)
+- Vehicle management system
+- Driver management system
+- Fuel tracking and approvals
+- Trip management module
+- Expense tracking system
+
+### Advanced Features
+- Analytics dashboard (fuel efficiency, cost tracking)
+- File uploads (fuel receipts, documents)
+- Notifications system
+- Audit logs for all transactions
+
+---
+
+## Project Status
+
+Current Phase: **Backend Authentication Complete (Phase 1)**
+
+Implemented:
+- JWT Authentication system
+- Secure password hashing (bcrypt)
+- User registration and login
+- Protected route middleware (get_current_user)
+- FastAPI dependency injection pattern
 
 ---
 
@@ -55,4 +100,5 @@ backend/
 
 ## Author
 
-### Muhammed Yaseen Ismail
+**Muhammed Yaseen Ismail**
+Full Stack Developer (React + Python)  
