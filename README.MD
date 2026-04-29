@@ -36,12 +36,17 @@ This project follows a modular backend architecture:
 - Protected API routes using dependency injection
 - Token-based authentication flow
 
+### Authorization (RBAC)
+- Role-based access control (Admin / Manager / Driver)
+- Role stored at database level
+- Reusable role validation dependency
+- Endpoint-level access restrictions
+
 ---
 
 ## Planned Features (In Progress)
 
 ### Core System Modules
-- Role-based access control (Admin / Manager / Driver)
 - Vehicle management system
 - Driver management system
 - Fuel tracking and approvals
@@ -58,13 +63,14 @@ This project follows a modular backend architecture:
 
 ## Project Status
 
-Current Phase: **Backend Authentication Complete (Phase 1)**
+Current Phase: **Backend Authentication & Authorization Complete (Phase 1)**
 
 Implemented:
 - JWT Authentication system
 - Secure password hashing (bcrypt)
 - User registration and login
 - Protected route middleware (get_current_user)
+- Role-based access control (RBAC)
 - FastAPI dependency injection pattern
 
 ---
