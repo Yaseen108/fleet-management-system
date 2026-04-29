@@ -42,13 +42,18 @@ This project follows a modular backend architecture:
 - Reusable role validation dependency
 - Endpoint-level access restrictions
 
+### Core Modules
+- Vehicle management (create, list)
+- Driver management (create, list)
+- Data validation and uniqueness constraints
+- Role-restricted operations (Admin / Manager access)
+
 ---
 
 ## Planned Features (In Progress)
 
 ### Core System Modules
-- Vehicle management system
-- Driver management system
+- Driver-to-vehicle assignment
 - Fuel tracking and approvals
 - Trip management module
 - Expense tracking system
@@ -63,7 +68,7 @@ This project follows a modular backend architecture:
 
 ## Project Status
 
-Current Phase: **Backend Authentication & Authorization Complete (Phase 1)**
+Current Phase: **Core Backend Modules Implemented (Phase 2)**
 
 Implemented:
 - JWT Authentication system
@@ -71,7 +76,17 @@ Implemented:
 - User registration and login
 - Protected route middleware (get_current_user)
 - Role-based access control (RBAC)
+- Vehicle module (CRUD + RBAC)
+- Driver module (CRUD + RBAC)
 - FastAPI dependency injection pattern
+
+---
+
+## Domain Entities
+
+- **User** → Authentication and system access control
+- **Vehicle** → Fleet assets with fuel and status tracking
+- **Driver** → Licensed operators with expiry validation
 
 ---
 
