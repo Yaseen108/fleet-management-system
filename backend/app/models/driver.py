@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.orm import relationship
 from app.db.session import Base
 
 
@@ -10,3 +11,6 @@ class Driver(Base):
     license_number = Column(String, unique=True, nullable=False)
     license_expiry = Column(Date, nullable=False)
     status = Column(String, default="active")  # active / inactive
+
+    # inside class Driver
+    vehicle = relationship("Vehicle", back_populates="driver", uselist=False)

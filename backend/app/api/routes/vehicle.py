@@ -1,3 +1,4 @@
+from app.models.driver import Driver
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -45,3 +46,26 @@ def list_vehicles(
     current_user = Depends(require_role(["admin", "manager"]))
 ):
     return db.query(Vehicle).all()
+
+@router.post("/{vehicle_id}/assign-driver/{driver_id}")
+def assign_driver(
+    vehicle_id: int,
+    driver_id: int,
+    db: Session = Depends(get_db),
+    current_user = Depends(require_role(["admin"]))
+):
+    vehicle = db.query(Vehicle).filter(Vehicle.id == vehicle_id).first()
+    driver = db.query(Driver).filter(Driver.id == driver_id).first()
+
+    if not vehicle:
+        raise HTTPException(status_code=404, detail="Vehicle not found")
+
+    if not driver:
+        raise HTTPException(status_code=404, detail="Driver not found")
+
+    vehicle.driver_id = driver.id
+
+    db.commit()
+    db.refresh(vehicle)
+
+    return {"message": "Driver assigned successfully"}

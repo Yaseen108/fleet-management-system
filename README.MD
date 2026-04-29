@@ -43,8 +43,11 @@ This project follows a modular backend architecture:
 - Endpoint-level access restrictions
 
 ### Core Modules
-- Vehicle management (create, list)
+- Vehicle management (create, list, assign driver)
 - Driver management (create, list)
+- Driver-to-vehicle assignment (one-to-one relationship)
+- Relational data modeling using foreign keys
+- Nested API responses (vehicle includes driver)
 - Data validation and uniqueness constraints
 - Role-restricted operations (Admin / Manager access)
 
@@ -53,7 +56,6 @@ This project follows a modular backend architecture:
 ## Planned Features (In Progress)
 
 ### Core System Modules
-- Driver-to-vehicle assignment
 - Fuel tracking and approvals
 - Trip management module
 - Expense tracking system
@@ -68,7 +70,7 @@ This project follows a modular backend architecture:
 
 ## Project Status
 
-Current Phase: **Core Backend Modules Implemented (Phase 2)**
+Current Phase: **Relational Data Modeling Implemented (Phase 3)**
 
 Implemented:
 - JWT Authentication system
@@ -78,6 +80,8 @@ Implemented:
 - Role-based access control (RBAC)
 - Vehicle module (CRUD + RBAC)
 - Driver module (CRUD + RBAC)
+- Driver-to-vehicle relationship (foreign key + ORM mapping)
+- Assignment endpoint for linking drivers and vehicles
 - FastAPI dependency injection pattern
 
 ---
@@ -85,8 +89,16 @@ Implemented:
 ## Domain Entities
 
 - **User** → Authentication and system access control
-- **Vehicle** → Fleet assets with fuel and status tracking
-- **Driver** → Licensed operators with expiry validation
+- **Vehicle** → Fleet assets with assigned driver and operational status
+- **Driver** → Licensed operators linked to vehicles
+
+---
+
+## Data Relationships
+
+- One-to-One: A vehicle can be assigned to one driver
+- Drivers can be linked to vehicles via foreign key relationships
+- ORM relationships implemented using SQLAlchemy
 
 ---
 

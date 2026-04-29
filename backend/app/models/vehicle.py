@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
 from app.db.session import Base
 
 
@@ -11,3 +12,8 @@ class Vehicle(Base):
     fuel_type = Column(String, nullable=False)
     tank_capacity = Column(Float, nullable=False)
     status = Column(String, default="active")  # active / inactive
+
+    # NEW
+    driver_id = Column(Integer, ForeignKey("drivers.id"), nullable=True)
+
+    driver = relationship("Driver", back_populates="vehicle")
