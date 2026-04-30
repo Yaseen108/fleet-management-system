@@ -2,6 +2,8 @@
 
 A full-stack fleet and transport management system designed to manage vehicles, drivers, fuel usage, and operational workflows.
 
+---
+
 ## Tech Stack
 
 ### Backend
@@ -43,20 +45,38 @@ This project follows a modular backend architecture:
 - Endpoint-level access restrictions
 
 ### Core Modules
-- Vehicle management (create, list, assign driver)
-- Driver management (create, list)
-- Driver-to-vehicle assignment (one-to-one relationship)
-- Relational data modeling using foreign keys
-- Nested API responses (vehicle includes driver)
-- Data validation and uniqueness constraints
-- Role-restricted operations (Admin / Manager access)
+
+#### 🚗 Vehicle Management
+- Create and list vehicles
+- Assign drivers to vehicles
+- Track vehicle status
+
+#### 👨‍✈️ Driver Management
+- Create and list drivers
+- License validation (expiry tracking)
+
+#### 🔗 Driver-Vehicle Assignment
+- One-to-one relationship between driver and vehicle
+- Foreign key implementation using SQLAlchemy
+- Nested API responses
+
+#### ⛽ Fuel Management (NEW)
+- Log fuel entries per vehicle
+- Automatic price-per-litre calculation
+- Approval workflow:
+  - Driver creates fuel entry
+  - Manager/Admin approves entry
+- Status tracking (pending → approved)
+- Role-based access:
+  - Drivers → create entries
+  - Managers/Admin → approve entries
 
 ---
 
 ## Planned Features (In Progress)
 
 ### Core System Modules
-- Fuel tracking and approvals
+- Fuel analytics (cost per vehicle, consumption tracking)
 - Trip management module
 - Expense tracking system
 
@@ -70,9 +90,9 @@ This project follows a modular backend architecture:
 
 ## Project Status
 
-Current Phase: **Relational Data Modeling Implemented (Phase 3)**
+Current Phase: **Business Logic & Workflow Implementation (Phase 4)**
 
-Implemented:
+### Implemented:
 - JWT Authentication system
 - Secure password hashing (bcrypt)
 - User registration and login
@@ -81,7 +101,8 @@ Implemented:
 - Vehicle module (CRUD + RBAC)
 - Driver module (CRUD + RBAC)
 - Driver-to-vehicle relationship (foreign key + ORM mapping)
-- Assignment endpoint for linking drivers and vehicles
+- Fuel module with approval workflow
+- Business logic (price-per-litre calculation)
 - FastAPI dependency injection pattern
 
 ---
@@ -91,13 +112,15 @@ Implemented:
 - **User** → Authentication and system access control
 - **Vehicle** → Fleet assets with assigned driver and operational status
 - **Driver** → Licensed operators linked to vehicles
+- **Fuel Log** → Tracks fuel usage, cost, and approval status
 
 ---
 
 ## Data Relationships
 
 - One-to-One: A vehicle can be assigned to one driver
-- Drivers can be linked to vehicles via foreign key relationships
+- One-to-Many: A vehicle can have multiple fuel logs
+- Fuel logs are linked to vehicles via foreign keys
 - ORM relationships implemented using SQLAlchemy
 
 ---
