@@ -11,9 +11,14 @@ A full-stack fleet and transport management system designed to manage vehicles, 
 - SQLAlchemy
 - SQLite (initially, PostgreSQL later)
 - JWT Authentication
+- CORS Middleware
 
-### Frontend (Planned)
-- React + Vite + TypeScript
+### Frontend
+- React
+- Vite
+- TypeScript
+- Axios
+- React Router
 
 ---
 
@@ -21,28 +26,34 @@ A full-stack fleet and transport management system designed to manage vehicles, 
 
 This project follows a modular backend architecture:
 
+### Backend
 - API Layer (FastAPI routes)
 - Service Layer (business logic)
 - Data Layer (SQLAlchemy ORM models)
 - Dependency Injection (FastAPI Depends system)
 - JWT-based authentication for security
 
+### Frontend
+- Component-based architecture (React)
+- Context API for authentication state
+- Axios for API communication
+- Protected routes via JWT
+
 ---
 
 ## Features (Completed)
 
-### Authentication & Security
+### 🔐 Authentication & Security
 - User registration with validation
 - Secure login system using JWT
 - Password hashing using bcrypt
-- Protected API routes using dependency injection
 - Token-based authentication flow
+- Frontend login integration with JWT storage
 
-### Authorization (RBAC)
+### 🔑 Authorization (RBAC)
 - Role-based access control (Admin / Manager / Driver)
-- Role stored at database level
-- Reusable role validation dependency
-- Endpoint-level access restrictions
+- Endpoint-level restrictions
+- Role validation via dependency injection
 
 ---
 
@@ -83,11 +94,37 @@ This project follows a modular backend architecture:
 - Average fuel price per litre
 
 ### Advanced Query Features
-- Aggregation queries using SQL (`SUM`, `AVG`, `GROUP BY`)
-- Date range filtering:
-  - `start_date`
-  - `end_date`
-- Optional query parameters for flexible reporting
+- Aggregation queries (`SUM`, `AVG`, `GROUP BY`)
+- Date range filtering (`start_date`, `end_date`)
+- Dashboard-ready API responses
+
+---
+
+## 🖥️ Frontend Dashboard (NEW)
+
+### Features
+- User login (JWT authentication)
+- Token stored in localStorage
+- Auth context for global state management
+- Axios interceptor for automatic token injection
+- Dashboard page consuming analytics APIs
+
+### Current Dashboard View
+- Displays fuel cost per vehicle
+- Connected to backend analytics endpoints
+
+### API Integration Example
+```bash
+GET /analytics/fuel-cost-per-vehicle
+```
+---
+
+## 🌐 Cross-Origin Support
+
+- CORS middleware configured in FastAPI
+- Allows frontend (`localhost:5173`) to communicate with backend
+
+---
 
 ### Example Endpoints
 ```bash
@@ -102,12 +139,16 @@ GET /analytics/fuel-cost-per-vehicle?start_date=2026-01-01&end_date=2026-12-31
 
 ## Planned Features (In Progress)
 
+### Frontend Enhancements
+- Charts & visualizations (Recharts)
+- Date filtering UI
+- Protected routes (frontend auth guards)
+
 ### Core System Modules
 - Trip management module
 - Expense tracking system
 
 ### Advanced Features
-- React analytics dashboard (charts & visualizations)
 - File uploads (fuel receipts, documents)
 - Notifications system
 - Audit logs for all transactions
@@ -116,22 +157,18 @@ GET /analytics/fuel-cost-per-vehicle?start_date=2026-01-01&end_date=2026-12-31
 
 ## Project Status
 
-Current Phase: **Analytics & Reporting Layer Implemented (Phase 5)**
+Current Phase: **Full-Stack Integration Complete (Phase 6)**
 
 ### Implemented:
-- JWT Authentication system
-- Secure password hashing (bcrypt)
-- User registration and login
-- Protected route middleware (get_current_user)
-- Role-based access control (RBAC)
-- Vehicle module (CRUD + RBAC)
-- Driver module (CRUD + RBAC)
-- Driver-to-vehicle relationship (foreign key + ORM mapping)
-- Fuel module with approval workflow
-- Business logic (price-per-litre calculation)
-- Analytics module with aggregation queries
-- Date range filtering for reporting endpoints
-- FastAPI dependency injection pattern
+- Backend authentication & RBAC
+- Relational data modeling (vehicles, drivers, fuel logs)
+- Fuel approval workflow
+- Analytics & reporting layer
+- Date-based filtering
+- React frontend with login system
+- JWT authentication flow (frontend ↔ backend)
+- API integration using Axios
+- CORS configuration for cross-origin requests
 
 ---
 
@@ -153,8 +190,9 @@ Current Phase: **Analytics & Reporting Layer Implemented (Phase 5)**
 
 ---
 
-## Running the Backend
+## Running the Project
 
+### Backend
 ```bash
 cd backend
 python -m venv venv
@@ -164,9 +202,16 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-## API available at:
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-http://127.0.0.1:8000/docs
+## Access Points
+- Backend API Docs: http://127.0.0.1:8000/docs
+- Frontend App: http://localhost:5173
 
 ## Project Structure
 
@@ -180,6 +225,14 @@ backend/
     ├── schemas/
     ├── services/
     └── main.py
+
+frontend/
+└── src/
+    ├── api/
+    ├── pages/
+    ├── components/
+    ├── context/
+    └── App.tsx
 ```
 
 ## Author

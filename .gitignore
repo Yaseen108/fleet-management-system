@@ -1,29 +1,61 @@
+# =========================
 # Python
+# =========================
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.sqlite3
+*.db
+
+# Python build artifacts
+*.egg-info/
+.eggs/
 
 # Virtual environment
 venv/
 .env
+*.env
 
-# FastAPI / logs
+# =========================
+# Logs
+# =========================
 *.log
+logs/
 
-# OS
+# =========================
+# OS Files
+# =========================
 .DS_Store
 Thumbs.db
 
+# =========================
 # IDEs
+# =========================
 .vscode/
 .idea/
 
-# Node (for future frontend)
+# =========================
+# Frontend (React / Vite)
+# =========================
 node_modules/
 dist/
 build/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
 
+# Frontend env files
+frontend/.env
+frontend/.env.local
+
+# =========================
+# Testing / Coverage
+# =========================
+.coverage
+htmlcov/
+
+# =========================
 # Docker
+# =========================
 *.env
