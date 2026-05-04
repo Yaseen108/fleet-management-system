@@ -44,23 +44,25 @@ This project follows a modular backend architecture:
 - Reusable role validation dependency
 - Endpoint-level access restrictions
 
-### Core Modules
+---
 
-#### 🚗 Vehicle Management
+## Core Modules
+
+### 🚗 Vehicle Management
 - Create and list vehicles
 - Assign drivers to vehicles
 - Track vehicle status
 
-#### 👨‍✈️ Driver Management
+### 👨‍✈️ Driver Management
 - Create and list drivers
 - License validation (expiry tracking)
 
-#### 🔗 Driver-Vehicle Assignment
+### 🔗 Driver-Vehicle Assignment
 - One-to-one relationship between driver and vehicle
 - Foreign key implementation using SQLAlchemy
 - Nested API responses
 
-#### ⛽ Fuel Management (NEW)
+### ⛽ Fuel Management
 - Log fuel entries per vehicle
 - Automatic price-per-litre calculation
 - Approval workflow:
@@ -73,15 +75,39 @@ This project follows a modular backend architecture:
 
 ---
 
+## 📊 Analytics & Reporting (NEW)
+
+### Fuel Analytics
+- Total fuel cost per vehicle
+- Total litres consumed per vehicle
+- Average fuel price per litre
+
+### Advanced Query Features
+- Aggregation queries using SQL (`SUM`, `AVG`, `GROUP BY`)
+- Date range filtering:
+  - `start_date`
+  - `end_date`
+- Optional query parameters for flexible reporting
+
+### Example Endpoints
+```bash
+GET /analytics/fuel-cost-per-vehicle
+GET /analytics/fuel-litres-per-vehicle
+GET /analytics/average-price-per-litre
+
+GET /analytics/fuel-cost-per-vehicle?start_date=2026-01-01&end_date=2026-12-31
+```
+
+---
+
 ## Planned Features (In Progress)
 
 ### Core System Modules
-- Fuel analytics (cost per vehicle, consumption tracking)
 - Trip management module
 - Expense tracking system
 
 ### Advanced Features
-- Analytics dashboard (fuel efficiency, cost tracking)
+- React analytics dashboard (charts & visualizations)
 - File uploads (fuel receipts, documents)
 - Notifications system
 - Audit logs for all transactions
@@ -90,7 +116,7 @@ This project follows a modular backend architecture:
 
 ## Project Status
 
-Current Phase: **Business Logic & Workflow Implementation (Phase 4)**
+Current Phase: **Analytics & Reporting Layer Implemented (Phase 5)**
 
 ### Implemented:
 - JWT Authentication system
@@ -103,6 +129,8 @@ Current Phase: **Business Logic & Workflow Implementation (Phase 4)**
 - Driver-to-vehicle relationship (foreign key + ORM mapping)
 - Fuel module with approval workflow
 - Business logic (price-per-litre calculation)
+- Analytics module with aggregation queries
+- Date range filtering for reporting endpoints
 - FastAPI dependency injection pattern
 
 ---
