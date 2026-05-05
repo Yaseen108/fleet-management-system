@@ -4,7 +4,7 @@ A full-stack fleet and transport management system designed to manage vehicles, 
 
 ---
 
-## Tech Stack
+## 🧰Tech Stack
 
 ### Backend
 - FastAPI
@@ -19,6 +19,8 @@ A full-stack fleet and transport management system designed to manage vehicles, 
 - TypeScript
 - Axios
 - React Router
+- Tailwind CSS
+- Recharts (data visualization)
 
 ---
 
@@ -38,17 +40,19 @@ This project follows a modular backend architecture:
 - Context API for authentication state
 - Axios for API communication
 - Protected routes via JWT
+- Reusable UI components (Card, Layout)
 
 ---
 
-## Features (Completed)
+## ✅Features (Completed)
 
 ### 🔐 Authentication & Security
 - User registration with validation
 - Secure login system using JWT
 - Password hashing using bcrypt
 - Token-based authentication flow
-- Frontend login integration with JWT storage
+- Frontend login + token persistence
+- Automatic token injection via Axios interceptors
 
 ### 🔑 Authorization (RBAC)
 - Role-based access control (Admin / Manager / Driver)
@@ -100,18 +104,24 @@ This project follows a modular backend architecture:
 
 ---
 
-## 🖥️ Frontend Dashboard (NEW)
+## 🖥️ Frontend Dashboard
 
 ### Features
-- User login (JWT authentication)
-- Token stored in localStorage
-- Auth context for global state management
-- Axios interceptor for automatic token injection
-- Dashboard page consuming analytics APIs
+- JWT-based login system
+- Global auth state (Context API)
+- Axios interceptor for token handling
+- Responsive dashboard layout
+- Reusable UI components
 
-### Current Dashboard View
-- Displays fuel cost per vehicle
-- Connected to backend analytics endpoints
+### 📈 Data Visualization
+- Bar charts using Recharts
+- Fuel cost per vehicle
+- Fuel litres per vehicle
+- Average price per litre
+
+### ⚠️ Note on Authentication
+- If charts fail to load, it may be due to an expired or missing JWT token
+- Re-login refreshes authentication and restores API access
 
 ### API Integration Example
 ```bash
@@ -137,12 +147,12 @@ GET /analytics/fuel-cost-per-vehicle?start_date=2026-01-01&end_date=2026-12-31
 
 ---
 
-## Planned Features (In Progress)
+## 🚧 Planned Features (In Progress)
 
 ### Frontend Enhancements
-- Charts & visualizations (Recharts)
 - Date filtering UI
 - Protected routes (frontend auth guards)
+- Advanced charts (line, pie)
 
 ### Core System Modules
 - Trip management module
@@ -157,9 +167,9 @@ GET /analytics/fuel-cost-per-vehicle?start_date=2026-01-01&end_date=2026-12-31
 
 ## Project Status
 
-Current Phase: **Full-Stack Integration Complete (Phase 6)**
+### Phase 6: Full-Stack Integration Complete
 
-### Implemented:
+### ✔Implemented:
 - Backend authentication & RBAC
 - Relational data modeling (vehicles, drivers, fuel logs)
 - Fuel approval workflow
@@ -169,6 +179,7 @@ Current Phase: **Full-Stack Integration Complete (Phase 6)**
 - JWT authentication flow (frontend ↔ backend)
 - API integration using Axios
 - CORS configuration for cross-origin requests
+- Chart-based data visualization
 
 ---
 
@@ -183,10 +194,8 @@ Current Phase: **Full-Stack Integration Complete (Phase 6)**
 
 ## Data Relationships
 
-- One-to-One: A vehicle can be assigned to one driver
-- One-to-Many: A vehicle can have multiple fuel logs
-- Fuel logs are linked to vehicles via foreign keys
-- ORM relationships implemented using SQLAlchemy
+- One-to-One → Vehicle ↔ Driver
+- One-to-Many → Vehicle → Fuel Logs
 
 ---
 
